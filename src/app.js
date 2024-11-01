@@ -1,4 +1,14 @@
-// const password = "XRsi1tPP63BW13E0";
-// const userName = "shailendra74";
-// const URI = "mongodb+srv://shailendra74:XRsi1tPP63BW13E0@namastenodejs.fa4p0.mongodb.net/?retryWrites=true&w=majority&appName=namasteNodeJS";
+const express = require('express');
+const app = express();
+const connectDB = require('../config/database');
 
+connectDB()
+    .then(()=>{
+        console.log("connected successfull to the DB !!");
+        app.listen(1111,()=>{
+            console.log("server listening on the port 1111...");
+        });
+    })
+    .catch((err)=>{
+        console.error("Can't Connect ....");
+    });
