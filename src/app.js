@@ -3,14 +3,18 @@ const app = express();
 const connectDB = require('./config/database');
 const User = require('./models/user');
 
+
+//using middleware for conver json to js object
+app.use(express.json()); 
 //creating the API for the signUp 
 app.post("/signup",async (req,res)=>{
-    const user = new User({
-        firstName : "sachin",
-        lastName : "tendulkar",
-        emailId : "sachin@tendulkar.com",
-        password : "sachin@123",
-    })
+    const user = new User(req.body);
+    // const user = new User({
+    //     firstName : "sachin",
+    //     lastName : "tendulkar",
+    //     emailId : "sachin@tendulkar.com",
+    //     password : "sachin@123",
+    // })
 
     try{
         await user.save();
